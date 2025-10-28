@@ -1,2 +1,4 @@
-# bending-moment
-Beam load and bending moment distribution simulation
+# dogs-walking
+Simulation of taking paired dogs for walking
+
+![bending-moment](/beam.gif)
