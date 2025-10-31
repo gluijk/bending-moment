@@ -1,6 +1,6 @@
 # Beam load and bending moment distribution simulation
 # www.overfitting.net
-# https://www.overfitting.net/
+# https://www.overfitting.net/2025/10/simulando-cargas-en-una-viga-con-r.html
 
 
 beam_bending_moments <- function(L, x, m, g = 9.81,
@@ -44,8 +44,8 @@ beam_bending_moments <- function(L, x, m, g = 9.81,
 
     xlimits=c(-0.2, L+0.2)
     ylimits=c(-0.05 * max(RA,RB) * fscale, max(M)) * 1.2
-    # ylimits=c(-30, 80)
-    # ylimits=c(-8, 23)
+    # ylimits=c(-30, 80)  # Example 2: moving loads (animation)
+    # ylimits=c(-8, 23)  # Example 3: load distributions
     plot(xlimits, ylimits, type = "n", axes = TRUE,
          xlab = "Position along the beam (m)", ylab = "Bending moment (N·m)",
          main = "Load and bending moment distribution",
@@ -53,7 +53,7 @@ beam_bending_moments <- function(L, x, m, g = 9.81,
     
     # Beam
     segments(0, 0, L, 0, lwd = 16, col = rgb(0.5, 0.5, 0.5, 0.5), lend = "butt")
-    text(L/2, ylimits[1]/15, paste0("L=", L, "m beam"), cex = 1.8, pos = 1)
+    text(L/2, ylimits[1]/15, paste0("L=", round(L,1), "m beam"), cex = 1.8, pos = 1)
     abline(h = 0, lty = 2)
     
     # Forces
@@ -71,7 +71,7 @@ beam_bending_moments <- function(L, x, m, g = 9.81,
     
     # Bending moments
     points(x, M, pch = 19, col = "blue")
-    if (labels) text(x, M, paste0(round(M, 1), " N·m"), pos = 3, col = "blue", cex = 1.8)
+    if (labels) text(x, M, paste0(round(M,1), "N·m"), pos = 3, col = "blue", cex = 1.8)
     segments(0, 0, x[1], M[1], col = 'blue', lty = 'dotted')
     for (i in 1:(N-1)) {
         segments(x[i], M[i], x[i+1], M[i+1], col = 'blue', lty = 'dotted')
